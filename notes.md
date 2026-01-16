@@ -753,3 +753,30 @@ function App(){
 ![alt text](image-12.png)
 ![alt text](image-13.png)
 
+# React interview coding related senario
+- after doing increment and decremenrt in interview then next question is like...
+![alt text](image-14.png)
+- now we do values duplicate now what happen??
+```
+- at click 1 value is increase not too many time 
+- usestate je ui ma update ave ene batches ma send kare variable ma
+- now batches ma we send early but uisng Fiber algo we have more controll on batches
+- whole thing nu 1 batch bane and same kaam to ek j vaar execute kare so we get increment by 1..
+
+```
+## NOW suppose in some situation we have to update like this then what ,,,,
+- 
+in setcounter we have one callback
+```javascript
+funtion App(){
+  const [counter,setCounter]=useState(5)
+  const addValue=()=>{
+    setCounter((prevCounter)=>prevCounter+=1)//here prevcounter give prevouse updated counter value
+    setCounter((Counter)=>Counter+=1)// also give whatever we have to give...
+    // for good practice we give same parameter name to all..
+    setCounter((prevCounter)=>prevCounter+=1)
+  }
+}
+```
+-------------------------------------------------------
+
