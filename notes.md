@@ -723,3 +723,33 @@ Minimal DOM Updates
 
 ### ⭐ Golden Line to Remember
 > Virtual DOM tells *what changed*, Fiber decides *when and how to apply it*, Reconciliation decides *where to apply it*.
+
+
+# Props
+![alt text](image-8.png)
+![alt text](image-9.png)
+![alt text](image-10.png)
+
+```javascript
+// we dont pass direct value like
+<Props_Demo obj={name:prince} arr=[1,2,3]/>
+// it will give error what we can do is ..
+
+function App(){
+  myobj={
+    name:"prince",
+    age:30
+      }
+      newarr=[1,2,3]
+      return(
+        <>
+        <Props_Demo obj={myobj} arr={newarr}/>// it will work we can pass variable 
+        </>
+      )
+}
+
+```
+![alt text](image-11.png)
+![alt text](image-12.png)
+![alt text](image-13.png)
+
