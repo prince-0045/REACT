@@ -1241,3 +1241,6 @@ Effects → State updates
 > 🔥 These hooks together make React apps **fast, predictable, and scalable**.
 
 
+# Custom hooks 
+- when we have no hooks like for some particular work.
+- 
