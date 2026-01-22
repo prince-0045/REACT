@@ -1243,4 +1243,181 @@ Effects → State updates
 
 # Custom hooks 
 - when we have no hooks like for some particular work.
-- 
+## What is a Custom Hook?
+
+A Custom Hook is a normal JavaScript function whose name starts with `use` and which can use React hooks like useState, useEffect, etc.
+
+Think of a Custom Hook as a small machine 🏭:
+Input ➝ Logic ➝ Output
+
+It hides complex logic and gives clean output to components.
+
+## Why Do We Need Custom Hooks?
+
+* Avoid repeating logic
+* Clean components
+* Easier debugging
+* Reusable across project
+
+---
+
+## Rules of Custom Hooks
+
+1. Name must start with `use`
+2. Only call hooks at top level
+3. Never inside loops or if
+4. Only in components or custom hooks
+
+---
+
+## Your First Custom Hook – Step by Step
+
+### Step 1: The Problem
+
+We need a counter in many components ❌ repeated logic
+
+### Step 2: Create Custom Hook
+
+```jsx
+function useCounter(initial = 0) {
+  const [count, setCount] = useState(initial)
+  return count
+}
+```
+
+### Step 3: Add Behavior
+
+```jsx
+function useCounter(initial = 0) {
+  const [count, setCount] = useState(initial)
+
+  const increment = () => setCount(count + 1)
+  const decrement = () => setCount(count - 1)
+
+  return { count, increment, decrement }
+}
+```
+
+Now components become very clean 🎉
+
+---
+
+## Using Custom Hook in Component
+
+```jsx
+function CounterApp() {
+  const { count, increment, decrement } = useCounter(10)
+
+  return (
+    <>
+      <h1>{count}</h1>
+      <button onClick={increment}>+</button>
+      <button onClick={decrement}>-</button>
+    </>
+  )
+}
+```
+
+---
+
+## Why Name Must Start with `use`
+
+React checks functions starting with `use`.
+
+Wrong ❌
+
+```js
+function counterHook(){}
+```
+
+Correct ✅
+
+```js
+function useCounter(){}
+```
+
+---
+
+## Custom Hook with API (Real Example)
+
+```jsx
+function useCurrencyInfo(currency) {
+  const [data, setData] = useState({})
+
+  useEffect(() => {
+    fetch(`.../${currency}.json`)
+      .then(res => res.json())
+      .then(res => setData(res[currency]))
+  }, [currency])
+
+  return data
+}
+```
+
+This hook:
+
+* Takes currency
+* Fetches data
+* Returns usable rates
+
+---
+
+## How App Uses It
+
+```jsx
+const currencyInfo = useCurrencyInfo(from)
+```
+
+App doesn't care how data comes, just uses it 👍
+
+---
+
+## Mental Model
+
+Component = UI
+Custom Hook = Logic
+
+---
+
+## Common Beginner Mistakes
+
+❌ Using hooks inside loops
+❌ Forgetting dependency array
+❌ Naming without use
+❌ Returning nothing
+
+---
+
+## When Should You Create Custom Hooks?
+
+* Same logic in multiple components
+* Complex useEffect
+* API handling
+* Form validation
+
+---
+
+## Real-world Custom Hook Examples
+
+| Use Case | Hook      |
+| -------- | --------- |
+| Auth     | useAuth   |
+| API      | useFetch  |
+| Theme    | useTheme  |
+| Online   | useOnline |
+
+---
+
+## Mini Practice
+
+Try creating:
+
+* useTimer
+* useWindowWidth
+* useLocalStorage
+
+---
+
+
+
+
